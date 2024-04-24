@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
+import { FormControl, InputLabel, Select, MenuItem, Button, Backdrop, CircularProgress} from '@mui/material';
 import PriorityQueue from './Components/PriorityQueue';
 import { Graph } from './Components/Graph';
 import { data } from './Data';
@@ -14,7 +15,16 @@ function App() {
   const [allNodes, setAllNodes] = useState([{ fromDataObj: {}, toDataObj: {} }])
   const [fromData, setFromData] = useState('');
   const [toData, setToData] = useState('');
+  const [open, setOpen] = React.useState(false);
 
+  function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  }
+  async function handleOpen() {
+    setOpen(true);
+    await sleep(1500).then(() => setOpen(false));
+    handleSubmit();
+  }
   const handleSubmit = () => {
     const size = districts.length;
     var dist = [];
@@ -92,50 +102,102 @@ function App() {
     setCoords({ x: offsetX, y: offsetY });
   } */
 
+  const [scalingFactorX, setScalingFactorX] = useState(1);
+  const [scalingFactorY, setScalingFactorY] = useState(1);
+  const imageRef = useRef(null);
+  useEffect(() => {
+    const updateCoords = () => {
+      const image = imageRef.current;
+      if (!image) return;
+
+      const originalWidth = image.naturalWidth;
+      const originalHeight = image.naturalHeight;
+      const currentWidth = image.clientWidth;
+      const currentHeight = image.clientHeight;
+
+      if (currentWidth < 640) {
+        setScalingFactorX(currentWidth / originalWidth)
+        setScalingFactorY(currentHeight / originalHeight)
+      }
+    };
+
+    window.addEventListener('resize', updateCoords);
+    updateCoords();
+
+    return () => window.removeEventListener('resize', updateCoords);
+  }, []);
+
   return (
     <div className="App">
       <h1>Shortest Route - Dijikstra </h1>
-      <div>
-        <label for="from">From:</label>
-        <select value={fromData} name="from" id="from" onChange={(event) => setFromData(event.target.value)}>
-          <option value='select'>select</option>
-          {
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <FormControl style={{ width: '45%' }} sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">From</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={fromData}
+            label="from"
+            onChange={(event) => setFromData(event.target.value)}
+          >
+            {
 
-            districts.map((district, index) => (
-              <option value={district}>{district}</option>
-            ))
-          }
-        </select>
-      </div>
-      <div>
-        <label for="to">To:</label>
-        <select value={toData} name="to" id="to" onChange={(event) => setToData(event.target.value)}>
-          <option value='select'>select</option>
-          {
-            districts.map((district, index) => (
-              <option value={district}>{district}</option>
-            ))
-          }
-        </select>
-      </div>
-      <button onClick={handleSubmit}>Search</button><br />
+              districts.map((district, index) => (
+                <MenuItem value={district}>{district}</MenuItem>
+              ))
+            }
+          </Select>
+        </FormControl>
+        <FormControl style={{ width: '45%' }} sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">To</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={toData}
+            label="to"
+            onChange={(event) => setToData(event.target.value)}
+          >
+            {
 
-      <div className='container' style={{ position: 'relative', display: 'inline-block' }}>
-        <img src={Map} alt='map' className='image' useMap="#map" />
+              districts.map((district, index) => (
+                <MenuItem value={district}>{district}</MenuItem>
+              ))
+            }
+          </Select>
+        </FormControl>
+        <Button style={fromData.length===0 || toData.length===0 ?{marginBottom: '10px', backgroundColor: '#444544',color:'white'}:{ marginBottom: '10px', backgroundColor: 'black',color:'white' }} variant={fromData.length===0 || toData.length===0 ?"disabled":"contained"} onClick={() => handleOpen()}>{fromData.length===0 || toData.length===0 ?"Select from and to":"Search"}</Button>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+
+
+      <div className='container' style={{ width:'90%',maxWidth:'640px',position:'relative', display: 'inline-block' }}>
+        <img src={Map} ref={imageRef}style={{width:'100%'}} alt='map' className='image' useMap="#map" />
         {
 
           allNodes.map((dat) => {
             return (
               <svg class="my-svg" style={{ position: 'absolute', top: 0, left: 0 }}>
                 <line
-                  x1={dat.fromDataObj.x}
-                  y1={dat.fromDataObj.y}
-                  x2={dat.toDataObj.x}
-                  y2={dat.toDataObj.y}
+                  x1={scalingFactorX===0?dat.fromDataObj.x:dat.fromDataObj.x*scalingFactorX}
+                  y1={scalingFactorY===0?dat.fromDataObj.y:dat.fromDataObj.y*scalingFactorY}
+                  x2={scalingFactorX===0?dat.toDataObj.x:dat.toDataObj.x*scalingFactorX}
+                  y2={scalingFactorY===0?dat.toDataObj.y:dat.toDataObj.y*scalingFactorY}
                   style={{ stroke: 'red', strokeWidth: 2 }}
                 />
-                <circle cx={dat.fromDataObj.x} cy={dat.fromDataObj.y} r="5" style={{ stroke: 'red', strokeWidth: 3 }} />
-                <circle cx={dat.toDataObj.x} cy={dat.toDataObj.y} r="5" style={{ stroke: 'red', strokeWidth: 3 }} />
+                {
+
+                  (dat.fromDataObj.x > 0 && dat.fromDataObj.y > 0 && dat.toDataObj.x > 0 && dat.toDataObj.y > 0) ? (
+                    <>
+                      <circle cx={scalingFactorX===0?dat.fromDataObj.x:dat.fromDataObj.x*scalingFactorX} cy={scalingFactorY===0?dat.fromDataObj.y:dat.fromDataObj.y*scalingFactorY} r="5" style={{ stroke: 'red', strokeWidth: 3 }} />
+                      <circle cx={scalingFactorX===0?dat.toDataObj.x:dat.toDataObj.x*scalingFactorX} cy={scalingFactorY===0?dat.toDataObj.y:dat.toDataObj.y*scalingFactorY} r="5" style={{ stroke: 'red', strokeWidth: 3 }} />
+                    </>
+                  ) : (<></>)
+                }
               </svg>
             )
           })
@@ -146,8 +208,12 @@ function App() {
         {coords.x !== null && coords.y !== null && (
           <p>Clicked at X: {coords.x}, Y: {coords.y}</p>
         )} */}
-      </div>
-      <p>Total Distance : {totalDistance}km</p>
+      </div>{
+        totalDistance>0?(
+          <p>Total Distance : {totalDistance}km</p>
+        ):(<></>)
+      }
+      
     </div>
   );
 }
