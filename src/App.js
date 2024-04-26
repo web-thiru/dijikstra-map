@@ -11,7 +11,7 @@ import {
 import PriorityQueue from "./Components/PriorityQueue";
 import { Graph } from "./Components/Graph";
 import { data } from "./Data";
-import Map from "./Assets/map.png";
+import Map from "./Assets/tamilnadumap.svg";
 import "./App.css";
 import Queue from "./Components/Queue";
 
@@ -21,7 +21,7 @@ function App() {
   const list = [];
   const [totalDistance, setTotalDistance] = useState(0);
   const [allNodes, setAllNodes] = useState([
-    { fromDataObj: {}, toDataObj: {} },
+    { fromDataObj: {x:-10,y:-10}, toDataObj: {x:-10,y:-10} },
   ]);
   const [fromData, setFromData] = useState("");
   const [toData, setToData] = useState("");
@@ -80,13 +80,13 @@ function App() {
     for (let i of setValue) {
       list.push(i);
     }
-
+    console.log(list)
     var start = list[0];
     var dup_dummy = [];
     for (let j = 1; j < list.length; j++) {
       var end = list[j];
-      var startObj = null;
-      var endObj = null;
+      var startObj = {};
+      var endObj = {};
       for (let i in data) {
         if (i === start) {
           startObj = data[i];
@@ -120,8 +120,9 @@ function App() {
     originalHeight = image.naturalHeight;
     currentWidth = image.clientWidth;
     currentHeight = image.clientHeight;
+    // console.log(image.clientWidth, image.clientHeight);
   }
-
+  
   const [scalingFactorX, setScalingFactorX] = useState(
     currentWidth / originalWidth
   );
@@ -131,23 +132,20 @@ function App() {
   useEffect(() => {
     const updateCoords = () => {
       if (!image) return;
-      console.log(image);
 
       const originalWidth = image.naturalWidth;
       const originalHeight = image.naturalHeight;
       const currentWidth = image.clientWidth;
       const currentHeight = image.clientHeight;
 
-      if (currentWidth < 640) {
-        setScalingFactorX(currentWidth / originalWidth);
-        setScalingFactorY(currentHeight / originalHeight);
+      if (currentWidth < originalWidth) {
+        setScalingFactorX((currentWidth / originalWidth)*2.5);
+        setScalingFactorY((currentHeight / originalHeight)*2.5);
       }
-
-      console.log(scalingFactorX, scalingFactorY);
     };
-    updateCoords();
-    window.addEventListener("resize", updateCoords);
 
+    window.addEventListener("resize", updateCoords);
+    updateCoords();
     return () => window.removeEventListener("resize", updateCoords);
   });
 
@@ -172,7 +170,9 @@ function App() {
             onChange={(event) => setFromData(event.target.value)}
           >
             {districts.map((district, index) => (
-              <MenuItem value={district}>{district}</MenuItem>
+              <MenuItem key={index} value={district}>
+                {district}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -186,7 +186,9 @@ function App() {
             onChange={(event) => setToData(event.target.value)}
           >
             {districts.map((district, index) => (
-              <MenuItem value={district}>{district}</MenuItem>
+              <MenuItem key={index} value={district}>
+                {district}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -240,82 +242,45 @@ function App() {
           className="image"
           useMap="#map"
         />
-        {allNodes.map((dat) => {
-          return (
-            <svg
-              class="my-svg"
-              style={{ position: "absolute", top: 0, left: 0 }}
-            >
-              <line
-                x1={
-                  scalingFactorX === 0
-                    ? dat.fromDataObj.x
-                    : dat.fromDataObj.x * scalingFactorX
-                }
-                y1={
-                  scalingFactorY === 0
-                    ? dat.fromDataObj.y
-                    : dat.fromDataObj.y * scalingFactorY
-                }
-                x2={
-                  scalingFactorX === 0
-                    ? dat.toDataObj.x
-                    : dat.toDataObj.x * scalingFactorX
-                }
-                y2={
-                  scalingFactorY === 0
-                    ? dat.toDataObj.y
-                    : dat.toDataObj.y * scalingFactorY
-                }
-                style={{ stroke: "green", strokeWidth: 2 }}
-              />
-              {dat.fromDataObj.x > 0 &&
-              dat.fromDataObj.y > 0 &&
-              dat.toDataObj.x > 0 &&
-              dat.toDataObj.y > 0 ? (
-                <>
-                  <circle
-                    cx={
-                      scalingFactorX === 0
-                        ? dat.fromDataObj.x
-                        : dat.fromDataObj.x * scalingFactorX
-                    }
-                    cy={
-                      scalingFactorY === 0
-                        ? dat.fromDataObj.y
-                        : dat.fromDataObj.y * scalingFactorY
-                    }
-                    r="5"
-                    style={{ stroke: "red", strokeWidth: 3 }}
-                  />
-                  <circle
-                    cx={
-                      scalingFactorX === 0
-                        ? dat.toDataObj.x
-                        : dat.toDataObj.x * scalingFactorX
-                    }
-                    cy={
-                      scalingFactorY === 0
-                        ? dat.toDataObj.y
-                        : dat.toDataObj.y * scalingFactorY
-                    }
-                    r="5"
-                    style={{ stroke: "red", strokeWidth: 3 }}
-                  />
-                </>
-              ) : (
-                <></>
-              )}
-            </svg>
-          );
-        })}
-        {/*  <map id="planetmap" name="map">
+        {allNodes.length > 0 &&
+          allNodes.map((dat, key) => {
+            console.log(scalingFactorX, scalingFactorY);
+            return (
+              <svg
+                className="my-svg"
+                key={key}
+                style={{ position: "absolute", top: 0, left: 0 }}
+              >
+                <line
+                  x1={dat.fromDataObj.x * scalingFactorX}
+                  y1={dat.fromDataObj.y * scalingFactorY}
+                  x2={dat.toDataObj.x * scalingFactorX}
+                  y2={dat.toDataObj.y * scalingFactorY}
+                  style={{ stroke: "green", strokeWidth: 2 }}
+                />
+
+                <circle
+                  cx={dat.fromDataObj.x * scalingFactorX}
+                  cy={dat.fromDataObj.y * scalingFactorY}
+                  r="5"
+                  style={{ stroke: "red", strokeWidth: 3 }}
+                />
+                <circle
+                  cx={dat.toDataObj.x * scalingFactorX}
+                  cy={dat.toDataObj.y * scalingFactorY}
+                  r="5"
+                  style={{ stroke: "red", strokeWidth: 3 }}
+                />
+              </svg>
+            );
+          })}
+         {/* <map id="planetmap" name="map">
 
         </map>
         {coords.x !== null && coords.y !== null && (
           <p>Clicked at X: {coords.x}, Y: {coords.y}</p>
-        )} */}
-      </div>
+        )}
+ */}      </div>
       {totalDistance > 0 ? <p>Total Distance : {totalDistance}km</p> : <></>}
     </div>
   );

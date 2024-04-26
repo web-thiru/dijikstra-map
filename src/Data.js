@@ -1,162 +1,130 @@
 export const data = {
     chennai:{
-      x:559,
-      y:79
+      x:555,
+      y:93
     },
     tiruvallur:{
-      x:537,
-      y:39
-    },
-    ranipet:{
-      x:444,
-      y:106
+      x:531,
+      y:56
     },
     kanchipuram:{
-      x:504,
-      y:109
-    },
-    chengalpet:{
       x:526,
       y:162
     },
     vellore:{
-      x:383,
-      y:109
+      x:376,
+      y:130
     },
     tiruvanamalai:{
-      x:408,
-      y:166
+      x:394,
+      y:183
     },
     villupuram:{
-      x:464,
-      y:222
-    },
-    puducherry:{
-      x:499,
-      y:242
-    },
-    tirupattur:{
-      x:342,
-      y:163
+      x:436,
+      y:236
     },
     krishnagiri:{
-      x:244,
-      y:136
+      x:259,
+      y:142
     },
     dharmapuri:{
-      x:275,
-      y:205
-    },
-    kallakurichi:{
-      x:399,
-      y:265
+      x:271,
+      y:216
     },
     cuddalore:{
-      x:465,
+      x:486,
       y:299
     },
-    mayiladuthurai:{
-      x:496,
-      y:339
-    },
-    karaikal:{
-      x:504,
-      y:377
-    },
     nagapattinam:{
-      x:505,
-      y:426
+      x:499,
+      y:402
     },
     tiruvarur:{
-      x:465,
-      y:425
+      x:460,
+      y:410
     },
     trichy:{
-      x:340,
-      y:382
+      x:334,
+      y:360
     },
     namakkal:{
-      x:272,
-      y:332
+      x:278,
+      y:339
     },
     erode:{
-      x:176,
-      y:306
+      x:182,
+      y:311
     },
     nilgiris:{
-      x:43,
-      y:297
+      x:78,
+      y:322
     },
     coimbatore:{
-      x:115,
-      y:396
+      x:123,
+      y:393
     },
     tiruppur:{
-      x:186,
-      y:384
+      x:179,
+      y:403
     },
     karur:{
-      x:285,
-      y:392
+      x:291,
+      y:388
     },
     thanjavur:{
-      x:425,
-      y:411
+      x:419,
+      y:417
     },
     ariyalur:{
-      x:417,
-      y:356
+      x:411,
+      y:365
     },
     perambalur:{
-      x:379,
-      y:332
+      x:374,
+      y:342
     },
     salem:{
-      x:313,
-      y:274
+      x:306,
+      y:277
     },
     pudukkottai:{
-      x:371,
-      y:440
+      x:366,
+      y:444
     },
     sivagangai:{
-      x:332,
-      y:516
+      x:334,
+      y:515
     },
     ramanathapuram:{
-      x:341,
-      y:601
+      x:361,
+      y:577
     },
     madurai:{
-      x:237,
-      y:526
+      x:251,
+      y:522
     },
     theni:{
       x:180,
-      y:516
+      y:532
     },
-    dindigal:{
-      x:240,
-      y:463
+    dindigul:{
+      x:237,
+      y:469
     },
     virudhunagar:{
-      x:232,
-      y:587
-    },
-    tenkasi:{
-      x:180,
-      y:625
+      x:246,
+      y:590
     },
     tirunelveli:{
-      x:198,
-      y:711
+      x:188,
+      y:656
     },
     tuticorin:{
-      x:259,
-      y:666
+      x:268,
+      y:661
     },
     kanyakumari:{
-      x:162,
-      y:730
+      x:167,
+      y:728
     }
   }

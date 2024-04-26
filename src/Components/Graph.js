@@ -8,19 +8,11 @@ export const Graph = {
             name: "kanchipuram",
             distance: 76
         },
-        {
-            name: "chengalpet",
-            distance: 63
-        }
     ],
     "tiruvallur": [
         {
             name: "vellore",
             distance: 116
-        },
-        {
-            name: "ranipet",
-            distance: 95
         },
         {
             name: "kanchipuram",
@@ -29,24 +21,6 @@ export const Graph = {
         {
             name: "chennai",
             distance: 45
-        }
-    ],
-    "ranipet": [
-        {
-            name: "tiruvallur",
-            distance: 95
-        },
-        {
-            name: "kanchipuram",
-            distance: 50
-        },
-        {
-            name: "tiruvanamalai",
-            distance: 97
-        },
-        {
-            name: "vellore",
-            distance: 28
         }
     ],
     "kanchipuram": [
@@ -59,48 +33,30 @@ export const Graph = {
             distance: 76
         },
         {
-            name: "chengalpet",
-            distance: 42
+            name:'vellore',
+            distance: 71
         },
         {
             name: "tiruvanamalai",
             distance: 116
         },
         {
-            name: "ranipet",
-            distance: 50
-        }
-    ],
-    "chengalpet": [
-        {
-            name: "chennai",
-            distance: 63
-        },
-        {
-            name: "kanchipuram",
-            distance: 42
-        },
-        {
-            name: "tiruvanamalai",
-            distance: 134
-        },
-        {
             name: "villupuram",
-            distance: 105
+            distance: 125
         }
     ],
     "vellore": [
         {
-            name: "tirupattur",
+            name: "krishnagiri",
             distance: 89
+        },
+        {
+            name: 'kanchipuram',
+            distance: 71
         },
         {
             name: "tiruvanamalai",
             distance: 87
-        },
-        {
-            name: "ranipet",
-            distance: 28
         },
         {
             name: "tiruvallur",
@@ -109,7 +65,7 @@ export const Graph = {
     ],
     "tiruvanamalai": [
         {
-            name: "tirupattur",
+            name: "krishnagiri",
             distance: 94
         },
         {
@@ -117,24 +73,12 @@ export const Graph = {
             distance: 87
         },
         {
-            name: "ranipet",
-            distance: 97
-        },
-        {
             name: "kanchipuram",
             distance: 116
         },
         {
-            name: "chengalpet",
-            distance: 134
-        },
-        {
             name: "villupuram",
             distance: 62
-        },
-        {
-            name: "kallakurichi",
-            distance: 69
         },
         {
             name: "dharmapuri",
@@ -147,54 +91,29 @@ export const Graph = {
     ],
     "villupuram": [
         {
-            name: "puducherry",
-            distance: 45
-        },
-        {
             name: "cuddalore",
             distance: 45
-        },
-        {
-            name: "kallakurichi",
-            distance: 77
         },
         {
             name: "tiruvanamalai",
             distance: 62
         },
         {
-            name: "chengalpet",
-            distance: 105
-        }
-    ],
-    "puducherry": [
-        {
-            name: "villupuram",
-            distance: 45
+            name: "dharmapuri",
+            distance: 179
+        },{
+            name:"salem",
+            distance:178
         },
         {
-            name: "cuddalore",
-            distance: 23
-        }
-    ],
-    "tirupattur": [
-        {
-            name: "vellore",
-            distance: 89
-        },
-        {
-            name: "tiruvanamalai",
-            distance: 94
-        },
-        {
-            name: "krishnagiri",
-            distance: 45
+            name:"kanchipuram",
+            distance:125
         }
     ],
     "krishnagiri": [
         {
-            name: "tirupattur",
-            distance: 45
+            name: "vellore",
+            distance: 89
         },
         {
             name: "tiruvanamalai",
@@ -215,52 +134,18 @@ export const Graph = {
             distance: 119
         },
         {
-            name: "kallakurichi",
-            distance: 170
-        },
-        {
             name: "salem",
             distance: 64
-        }
-    ],
-    "kallakurichi": [
-        {
-            name: "dharmapuri",
-            distance: 170
         },
         {
-            name: "tiruvanamalai",
-            distance: 69
-        },
-        {
-            name: "villupuram",
-            distance: 77
-        },
-        {
-            name: "cuddalore",
-            distance: 101
-        },
-        {
-            name: "perambalur",
-            distance: 83
-        },
-        {
-            name: "salem",
-            distance: 102
+            name:"villupuram",
+            distance:179
         }
     ],
     "cuddalore": [
         {
-            name: "puducherry",
-            distance: 23
-        },
-        {
             name: "villupuram",
             distance: 45
-        },
-        {
-            name: "kallakurichi",
-            distance: 101
         },
         {
             name: "perambalur",
@@ -271,46 +156,17 @@ export const Graph = {
             distance: 198
         },
         {
-            name: "mayiladuthurai",
-            distance: 89
-        }
-    ],
-    "mayiladuthurai": [
-        {
-            name: "cuddalore",
-            distance: 89
-        },
-        {
-            name: "thanjavur",
-            distance: 76
-        },
-        {
-            name: "tiruvarur",
-            distance: 41
-        },
-        {
-            name: "karaikal",
-            distance: 37
-        }
-    ],
-    "karaikal": [
-        {
-            name: "mayiladuthurai",
-            distance: 37
-        },
-        {
-            name: "tiruvarur",
-            distance: 40
-        },
-        {
-            name: "nagapattinam",
-            distance: 19
+            name:"nagapattinam",
+            distance:130
         }
     ],
     "nagapattinam": [
         {
-            name: "karaikal",
-            distance: 19
+            name: "cuddalore",
+            distance: 130
+        },{
+            name:'thanjavur',
+            distance:85
         },
         {
             name: "tiruvarur",
@@ -319,10 +175,6 @@ export const Graph = {
     ],
     "tiruvarur": [
         {
-            name: "karaikal",
-            distance: 40
-        },
-        {
             name: "nagapattinam",
             distance: 27
         },
@@ -330,10 +182,6 @@ export const Graph = {
             name: "thanjavur",
             distance: 59
         },
-        {
-            name: "mayiladuthurai",
-            distance: 41
-        }
     ],
     "trichy": [
         {
@@ -388,7 +236,7 @@ export const Graph = {
         },
         {
             name: "karur",
-            distance: 34
+            distance: 47
         },
         {
             name: "erode",
@@ -462,22 +310,6 @@ export const Graph = {
             distance: 100,
         },
     ],
-
-    "tenkasi": [
-        {
-            name: "tirunelveli",
-            distance: 60,
-        },
-        {
-            name: "tuticorin",
-            distance: 106,
-        },
-        {
-            name: "virudhunagar",
-            distance: 128,
-        },
-    ],
-
     "tirunelveli": [
         {
             name: "kanyakumari",
@@ -488,9 +320,9 @@ export const Graph = {
             distance: 46,
         },
         {
-            name: "tenkasi",
-            distance: 60,
-        },
+            name: "virudhunagar",
+            distance:128
+        }
     ],
 
     "kanyakumari": [
@@ -506,17 +338,13 @@ export const Graph = {
             distance: 46,
         },
         {
-            name: "tenkasi",
-            distance: 106,
-        },
-        {
             name: "virudhunagar",
             distance: 112,
         },
         {
             name: "ramanathapuram",
             distance: 128,
-        },
+        }
     ],
 
     "ramanathapuram": [
@@ -560,14 +388,14 @@ export const Graph = {
             distance: 118,
         },
         {
-            name: "tenkasi",
+            name: "tirunelveli",
             distance: 128,
         },
     ],
 
     "madurai": [
         {
-            name: "dindugul",
+            name: "dindigul",
             distance: 65,
         },
         {
@@ -633,7 +461,7 @@ export const Graph = {
     "dindigul": [
         {
             name: "tiruppur",
-            distance: 119,
+            distance: 117,
         },
         {
             name: "karur",
@@ -671,11 +499,15 @@ export const Graph = {
         },
         {
             name: "dindigul",
-            distance: 79,
+            distance: 79
         },
     ],
 
     "salem": [
+        {
+            name:"villupuram",
+            distance:178
+        },
         {
             name: "namakkal",
             distance: 52,
@@ -687,10 +519,6 @@ export const Graph = {
         {
             name: "dharmapuri",
             distance: 64,
-        },
-        {
-            name: "kallakurichi",
-            distance: 102,
         },
         {
             name:"perambalur",
@@ -719,6 +547,10 @@ export const Graph = {
             name: "trichy",
             distance: 57,
         },
+        {
+            name:"nagapattinam",
+            distance:85
+        }
     ],
 
     "tiruppur": [
@@ -775,10 +607,6 @@ export const Graph = {
         {
             name: "salem",
             distance: 112,
-        },
-        {
-            name: "kallakurichi",
-            distance: 83,
         },
     ]
 }
