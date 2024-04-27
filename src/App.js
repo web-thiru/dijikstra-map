@@ -139,8 +139,8 @@ function App() {
       const currentHeight = image.clientHeight;
 
       if (currentWidth < originalWidth) {
-        setScalingFactorX((currentWidth / originalWidth)*2.5);
-        setScalingFactorY((currentHeight / originalHeight)*2.5);
+        setScalingFactorX(currentWidth / originalWidth);
+        setScalingFactorY(currentHeight / originalHeight);
       }
     };
 
