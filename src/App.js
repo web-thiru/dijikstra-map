@@ -11,7 +11,7 @@ import {
 import PriorityQueue from "./Components/PriorityQueue";
 import { Graph } from "./Components/Graph";
 import { data } from "./Data";
-import Map from "./Assets/tamilnadumap.svg";
+import Map from "./Assets/map.png";
 import "./App.css";
 import Queue from "./Components/Queue";
 
